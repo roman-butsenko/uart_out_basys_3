@@ -25,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Xilinx/projects/uart_out_2/uart_out_2.runs/impl_1'
+HD_PWD='C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

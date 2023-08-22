@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Xilinx/projects/uart_out_2/uart_out_2.runs/synth_1/uart_out.tcl"
+  variable script "C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/synth_1/uart_out.tcl"
   variable category "vivado_synth"
 }
 
@@ -83,15 +83,18 @@ create_project -in_memory -part xc7a35tcpg236-3
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Xilinx/projects/uart_out_2/uart_out_2.cache/wt [current_project]
-set_property parent.project_path C:/Xilinx/projects/uart_out_2/uart_out_2.xpr [current_project]
+set_property webtalk.parent_dir C:/Xilinx/projects/uart_out_basys_3/uart_out_2.cache/wt [current_project]
+set_property parent.project_path C:/Xilinx/projects/uart_out_basys_3/uart_out_2.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Xilinx/projects/uart_out_2/uart_out_2.cache/ip [current_project]
+set_property ip_output_repo c:/Xilinx/projects/uart_out_basys_3/uart_out_2.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
-read_verilog -library xil_defaultlib C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/sources_1/new/uart_out_2.v
+read_verilog -library xil_defaultlib {
+  C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/asci_characters.v
+  C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v
+}
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -101,12 +104,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc
-set_property used_in_implementation false [get_files C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc]
+read_xdc C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc
+set_property used_in_implementation false [get_files C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/utils_1/imports/synth_1/uart_out.dcp
+read_checkpoint -auto_incremental -incremental C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/utils_1/imports/synth_1/uart_out.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

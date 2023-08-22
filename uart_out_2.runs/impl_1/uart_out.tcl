@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Xilinx/projects/uart_out_2/uart_out_2.runs/impl_1/uart_out.tcl"
+  variable script "C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/impl_1/uart_out.tcl"
   variable category "vivado_impl"
 }
 
@@ -136,15 +136,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Xilinx/projects/uart_out_2/uart_out_2.cache/wt [current_project]
-  set_property parent.project_path C:/Xilinx/projects/uart_out_2/uart_out_2.xpr [current_project]
-  set_property ip_output_repo C:/Xilinx/projects/uart_out_2/uart_out_2.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Xilinx/projects/uart_out_basys_3/uart_out_2.cache/wt [current_project]
+  set_property parent.project_path C:/Xilinx/projects/uart_out_basys_3/uart_out_2.xpr [current_project]
+  set_property ip_output_repo C:/Xilinx/projects/uart_out_basys_3/uart_out_2.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Xilinx/projects/uart_out_2/uart_out_2.runs/synth_1/uart_out.dcp
+  add_files -quiet C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/synth_1/uart_out.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc
+  read_xdc C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/constrs_1/imports/basys3_sw_demo/Basys3_sw_Demo.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

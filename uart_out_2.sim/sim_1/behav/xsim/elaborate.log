@@ -5,6 +5,6 @@ Running: C:/Xilinx/Vivado/2023.1/bin/unwrapped/win64.o/xelab.exe --incr --debug 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-5021] port 'uart_rx' is not connected on this instance [C:/Xilinx/projects/uart_out_2/uart_out_2.srcs/sim_1/new/uart_out_2_sim.v:28]
+WARNING: [VRFC 10-5021] port 'uart_rx' is not connected on this instance [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sim_1/new/uart_out_2_sim.v:28]
 Completed static elaboration
 INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-3" LaunchTime="1692385938" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/uart_out.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-3" LaunchTime="1692716354" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/uart_out.dcp">
   <File Type="PA-TCL" Name="uart_out.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="uart_out_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="uart_out_reports.tcl"/>
@@ -11,6 +11,13 @@
   <File Type="VDS-TIMING-PB" Name="uart_out_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/asci_characters.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/uart_out_2.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -53,7 +60,9 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>
