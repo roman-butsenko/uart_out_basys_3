@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Tue Aug 22 18:01:06 2023
+| Date             : Sun Aug 27 19:53:52 2023
 | Host             : WIN-VLJ867UGB14 running 64-bit major release  (build 9200)
 | Command          : report_power -file uart_out_power_routed.rpt -pb uart_out_power_summary_routed.pb -rpx uart_out_power_routed.rpx
 | Design           : uart_out
@@ -53,12 +53,12 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |       52 |       --- |             --- |
-|   LUT as Logic |    <0.001 |       13 |     20800 |            0.06 |
-|   Register     |    <0.001 |       26 |     41600 |            0.06 |
+| Slice Logic    |    <0.001 |       62 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       16 |     20800 |            0.08 |
 |   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
-|   Others       |     0.000 |        4 |       --- |             --- |
-| Signals        |    <0.001 |       37 |       --- |             --- |
+|   Register     |    <0.001 |       29 |     41600 |            0.07 |
+|   Others       |     0.000 |        8 |       --- |             --- |
+| Signals        |    <0.001 |       43 |       --- |             --- |
 | I/O            |    <0.001 |        4 |       106 |            3.77 |
 | Static Power   |     0.068 |          |           |                 |
 | Total          |     0.069 |          |           |                 |

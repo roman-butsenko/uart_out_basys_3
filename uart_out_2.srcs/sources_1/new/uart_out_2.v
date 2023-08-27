@@ -1,21 +1,12 @@
 `timescale 1ns / 10ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
-// Engineer: 
+// Engineer: Roman Butsenko
 // 
-// Create Date: 10.08.2023 20:51:59
+// Create Date: 27.08.2023 20:51:59
 // Design Name: 
 // Module Name: uart_out
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
+// Project Name: uart_out
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -44,9 +35,27 @@ module uart_out(
     `include "C:\Xilinx\projects\uart_out_basys_3\uart_out_2.srcs\sources_1\new\asci_characters.v"
     
     parameter 
+    // bits for UART
     start_bit = 1'b0,
-    stop_bit = 1'b1;
+    stop_bit = 1'b1,
+    //variables for state machine
+    TRANSMIT = 1'b1,
+    IDLE = 1'b0;
     
+    reg state = 0;
+    reg next_state = 0;
+    
+    
+    
+    debounce trans_start(
+        .sig(button),
+        .clk(clk),
+        .sig_debounced(button_sig_debounced));
+        
+     reg button_debounced = 0;                              // had to create this because
+     always@(*)                                             // x state of button_debounce 
+     button_debounced <= (button_sig_debounced) ? 1:0;      // in the beginning was screwing me over
+        
     // This is very important, in UART least significant bit
     // goes first (right after the start bit), so in order for
     // it to line up with the ASCII simbol instantiation, this
@@ -82,20 +91,51 @@ module uart_out(
         endcase
     end 
     
-    always @ (posedge clk) begin
-        if (!button) begin
-            uart_tx_reg <= 1;
-            bit_count = 0;
-        end
-        else begin
-            uart_tx_reg <= bit[bit_count];
-            if (bit_count == 9) begin
-                bit_count <= 0;
-                letter_count <= (letter_count == 4'd14) ? 4'd0 : letter_count + 1;
+    //____state machine
+    always@(posedge clk) state <= next_state; 
+    
+    //state transition
+    always@(*)
+        case(state)
+            TRANSMIT: begin
+                next_state <= (letter_count == 4'd15) ? IDLE : TRANSMIT;
             end
-            else bit_count <= bit_count + 1;          
+            IDLE: begin
+               next_state <= (button_debounced) ? TRANSMIT : IDLE;
+            end
+            default: uart_tx_reg = 1;
+        endcase
+ 
+    //state outputs
+    always@(posedge clk)
+        case(next_state)
+        TRANSMIT: begin
+            uart_tx_reg = bit[bit_count];
+            if (bit_count == 9) begin
+                    bit_count = 0;
+                    letter_count = letter_count + 1;
+                end
+            else bit_count = bit_count + 1;
         end
-    end 
+        IDLE: begin
+            uart_tx_reg <= 1;
+            bit_count <= 0;
+            letter_count <= 0;
+        end
+        endcase
+    //____state machine end      
+    
+    
+    // UART recieve
+    
+    reg data_led_reg = 0;
+    assign data_led = 1;
+    
+//    always@(*) begin
+//        if (uart_rx == 1) data_led_reg = 1;
+//        else data_led_reg = 0;
+//    end
+    
     
     
 endmodule
@@ -123,6 +163,32 @@ module clk_gen(
     end
     
 endmodule
+
+// debouncing circuit
+module debounce(
+    input sig,
+    input clk,
+    output sig_debounced);
+    
+    wire d1_out;
+    wire d2_out;
+    wire n_d2_out;
+    
+    
+    //wouldn't hurt adding another clk
+    // divider here
+    dff dff_1(sig, clk, d1_out);
+    dff dff_2(d1_out, clk, d2_out);
+    
+    assign n_d2_out = ~d2_out;
+    
+    assign sig_debounced = d1_out & n_d2_out;  
+endmodule
+
+//Just a d-flop flop
+module dff (input d, input clk, output reg q);
+    always@(posedge clk) q<=d;
+endmodule 
 
 
 

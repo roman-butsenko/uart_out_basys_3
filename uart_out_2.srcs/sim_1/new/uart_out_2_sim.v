@@ -30,5 +30,7 @@ uart_out uart_out(
     .button(button)
     );
 
+//$monitor(button);
+
     
 endmodule

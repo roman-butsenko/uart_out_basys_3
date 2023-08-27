@@ -7,4 +7,13 @@ Starting static elaboration
 Pass Through NonSizing Optimizer
 WARNING: [VRFC 10-5021] port 'uart_rx' is not connected on this instance [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sim_1/new/uart_out_2_sim.v:28]
 Completed static elaboration
-INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.clk_gen
+Compiling module xil_defaultlib.dff
+Compiling module xil_defaultlib.debounce
+Compiling module xil_defaultlib.uart_out
+Compiling module xil_defaultlib.uart_out_simulation
+Compiling module xil_defaultlib.glbl
+Built simulation snapshot uart_out_simulation_behav
