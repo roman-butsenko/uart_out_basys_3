@@ -20,10 +20,9 @@ set_property PACKAGE_PIN U15 [get_ports data_led]
 set_property PACKAGE_PIN W19 [get_ports button]						
 	set_property IOSTANDARD LVCMOS33 [get_ports button]
 
-##USB-RS232 Interface
-set_property PACKAGE_PIN B18 [get_ports uart_rx]						
-	set_property IOSTANDARD LVCMOS33 [get_ports uart_rx]
-set_property PACKAGE_PIN A18 [get_ports uart_tx]						
-	set_property IOSTANDARD LVCMOS33 [get_ports uart_tx]
-	
-	
+	##USB-RS232 Interface
+set_property -dict { PACKAGE_PIN B18   IOSTANDARD LVCMOS33 } [get_ports uart_rx]
+set_property -dict { PACKAGE_PIN A18   IOSTANDARD LVCMOS33 } [get_ports uart_tx]
+
+#set_property CLOCK_DEDICATED_ROUTE FALSE [get_nets uart_rx_IBUF]
+

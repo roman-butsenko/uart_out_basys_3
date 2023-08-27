@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Sun Aug 27 19:53:26 2023
+| Date         : Sun Aug 27 21:34:02 2023
 | Host         : WIN-VLJ867UGB14 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file uart_out_control_sets_placed.rpt
 | Design       : uart_out
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |     5 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    19 |
+| Unused register locations in slices containing registers |    17 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -58,26 +58,26 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |               5 |            2 |
+| No           | No                    | No                     |               6 |            4 |
 | No           | No                    | Yes                    |               0 |            0 |
 | No           | Yes                   | No                     |              20 |            6 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               4 |            1 |
+| Yes          | Yes                   | No                     |               5 |            2 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+-----------------------+---------------+-----------------------------------------+------------------+----------------+--------------+
-|      Clock Signal     | Enable Signal |             Set/Reset Signal            | Slice Load Count | Bel Load Count | Bels / Slice |
-+-----------------------+---------------+-----------------------------------------+------------------+----------------+--------------+
-|  CLK100MHZ_IBUF_BUFG  |               |                                         |                1 |              1 |         1.00 |
-|  clk_gen_instance/clk |               |                                         |                1 |              4 |         4.00 |
-|  clk_gen_instance/clk |               | trans_start/dff_1/SR[0]                 |                1 |              4 |         4.00 |
-|  clk_gen_instance/clk | letter_count  | trans_start/dff_1/letter_count_reg[3]_0 |                1 |              4 |         4.00 |
-|  CLK100MHZ_IBUF_BUFG  |               | clk_gen_instance/p_0_in                 |                5 |             16 |         3.20 |
-+-----------------------+---------------+-----------------------------------------+------------------+----------------+--------------+
++-----------------------+---------------+-------------------------------+------------------+----------------+--------------+
+|      Clock Signal     | Enable Signal |        Set/Reset Signal       | Slice Load Count | Bel Load Count | Bels / Slice |
++-----------------------+---------------+-------------------------------+------------------+----------------+--------------+
+|  CLK100MHZ_IBUF_BUFG  |               |                               |                2 |              2 |         1.00 |
+|  clk_gen_instance/clk |               |                               |                2 |              4 |         2.00 |
+|  clk_gen_instance/clk |               | trans_start/dff_1/SR[0]       |                1 |              4 |         4.00 |
+|  clk_gen_instance/clk | letter_count  | trans_start/dff_1/state_reg_0 |                2 |              5 |         2.50 |
+|  CLK100MHZ_IBUF_BUFG  |               | clk_gen_instance/p_0_in       |                5 |             16 |         3.20 |
++-----------------------+---------------+-------------------------------+------------------+----------------+--------------+
 
 

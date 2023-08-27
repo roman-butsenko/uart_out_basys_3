@@ -68,25 +68,31 @@ module uart_out(
     
     // We're gonna write "Hello, world![new_line]", 14 characters in total
     
-    reg [3:0] letter_count = 0; // this register has to store at least 14 states
+    reg [4:0] letter_count = 0; // this register has to store at least 14 states
     
     always@(*) begin
         case(letter_count)
-            4'd0: bit = {stop_bit, H_let, start_bit};
-            4'd1: bit = {stop_bit, e_let, start_bit};
-            4'd2: bit = {stop_bit, l_let, start_bit};
-            4'd3: bit = {stop_bit, l_let, start_bit};
-            4'd4: bit = {stop_bit, o_let, start_bit};
-            4'd5:  bit = {stop_bit, comma_let, start_bit};
-            4'd6: bit = {stop_bit, space_let, start_bit};
-            4'd7: bit = {stop_bit, w_let, start_bit};
-            4'd8: bit = {stop_bit, o_let, start_bit};
-            4'd9: bit = {stop_bit, r_let, start_bit};
-            4'd10: bit = {stop_bit, l_let, start_bit};
-            4'd11: bit = {stop_bit, d_let, start_bit};
-            4'd12: bit = {stop_bit, exclam_let, start_bit};
-            4'd13: bit = {stop_bit, new_line_let, start_bit};
-            4'd14: bit = {stop_bit, return_let, start_bit};
+            5'd0: bit = {stop_bit, H_let, start_bit};
+            5'd1: bit = {stop_bit, e_let, start_bit};
+            5'd2: bit = {stop_bit, l_let, start_bit};
+            5'd3: bit = {stop_bit, l_let, start_bit};
+            5'd4: bit = {stop_bit, o_let, start_bit};
+            5'd5:  bit = {stop_bit, comma_let, start_bit};
+            5'd6: bit = {stop_bit, space_let, start_bit};
+            5'd7: bit = {stop_bit, w_let, start_bit};
+            5'd8: bit = {stop_bit, o_let, start_bit};
+            5'd9: bit = {stop_bit, r_let, start_bit};
+            5'd10: bit = {stop_bit, l_let, start_bit};
+            5'd11: bit = {stop_bit, d_let, start_bit};
+            5'd12: bit = {stop_bit, exclam_let, start_bit};
+            5'd13: bit = {stop_bit, new_line_let, start_bit};
+            5'd14: bit = {stop_bit, return_let, start_bit};
+            5'd15: bit = {stop_bit, enq_let, start_bit};
+            // enq stands for enquiry and is a symnol that tera term
+            // is looking for, after recieving it, it creates an
+            //answerback that can be read to implement 
+            //fullduplex UART
+            
             default:  bit = {stop_bit, exclam_let, start_bit};
         endcase
     end 
@@ -98,7 +104,7 @@ module uart_out(
     always@(*)
         case(state)
             TRANSMIT: begin
-                next_state <= (letter_count == 4'd15) ? IDLE : TRANSMIT;
+                next_state <= (letter_count == 5'd16) ? IDLE : TRANSMIT;
             end
             IDLE: begin
                next_state <= (button_debounced) ? TRANSMIT : IDLE;
@@ -109,19 +115,19 @@ module uart_out(
     //state outputs
     always@(posedge clk)
         case(next_state)
-        TRANSMIT: begin
-            uart_tx_reg = bit[bit_count];
-            if (bit_count == 9) begin
-                    bit_count = 0;
-                    letter_count = letter_count + 1;
-                end
-            else bit_count = bit_count + 1;
-        end
-        IDLE: begin
-            uart_tx_reg <= 1;
-            bit_count <= 0;
-            letter_count <= 0;
-        end
+            TRANSMIT: begin
+                uart_tx_reg = bit[bit_count];
+                if (bit_count == 9) begin
+                        bit_count = 0;
+                        letter_count = letter_count + 1;
+                    end
+                else bit_count = bit_count + 1;
+            end
+            IDLE: begin
+                uart_tx_reg <= 1;
+                bit_count <= 0;
+                letter_count <= 0;
+            end
         endcase
     //____state machine end      
     
@@ -129,15 +135,14 @@ module uart_out(
     // UART recieve
     
     reg data_led_reg = 0;
-    assign data_led = 1;
+    assign data_led = data_led_reg;
+    // I checjed with led, I can notice the blink
+    // if it recieves the same data as it transmits 
     
-//    always@(*) begin
-//        if (uart_rx == 1) data_led_reg = 1;
-//        else data_led_reg = 0;
-//    end
-    
-    
-    
+    always@(posedge CLK100MHZ) begin
+        data_led_reg = ~uart_rx;
+    end
+       
 endmodule
 
 
@@ -189,7 +194,3 @@ endmodule
 module dff (input d, input clk, output reg q);
     always@(posedge clk) q<=d;
 endmodule 
-
-
-
-// 
