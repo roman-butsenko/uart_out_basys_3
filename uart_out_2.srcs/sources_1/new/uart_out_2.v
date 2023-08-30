@@ -16,7 +16,7 @@ module uart_out(
     output uart_tx,
     input uart_rx,
     input button,
-    output data_led
+    output [15:0] LED
     );
     
     
@@ -135,13 +135,66 @@ module uart_out(
     // UART recieve
     
     reg data_led_reg = 0;
-    assign data_led = data_led_reg;
+    assign LED [15] = data_led_reg;
     // I checjed with led, I can notice the blink
     // if it recieves the same data as it transmits 
     
-    always@(posedge CLK100MHZ) begin
-        data_led_reg = ~uart_rx;
-    end
+    //output will be monitored through LEDs
+    reg [9:0] led_data;
+    assign LED [9:0] = led_data [9:0]; 
+    
+    
+
+    parameter
+    RECIEVE = 1,
+    IDLE_RX = 0;
+    
+    reg state_rx = IDLE_RX;
+    reg next_state_rx = IDLE_RX;
+    
+    reg [3:0] recieve_count = 0;
+    reg [9:0] recieve_data = 0;
+    
+    //idea for debugging: counting the amount of negative and positive impulses on rx
+    
+    //state transition
+    always@(*)
+        case(state_rx)
+            RECIEVE: begin
+               next_state_rx <= (recieve_count == 10'd9) ? IDLE_RX : RECIEVE;
+            end
+            IDLE_RX: begin
+               next_state_rx <= (uart_rx == 0) ? RECIEVE : IDLE_RX;
+            end            
+        endcase
+        
+    //state outputs
+    always@(posedge clk)
+        case(next_state_rx)
+            RECIEVE: begin
+                led_data [9:0] <= 10'b1000000001;
+                recieve_data[9:0] <= {uart_rx, recieve_data[9:1]};
+                recieve_count = recieve_count + 1;
+                
+            end
+            IDLE_RX: begin
+                recieve_count <= 0;
+                led_data [9:0] <= recieve_data[9:0];
+                
+                //recieve_data <= led_data;
+            end
+        endcase
+        
+//        always@(*) begin
+//        led_data [9:0] = recieve_data [9:0];
+//        end
+        
+//    always@(*) begin
+//        data_led_reg = ~uart_rx;
+//    end
+    
+ 
+    
        
 endmodule
 

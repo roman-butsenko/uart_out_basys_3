@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Sun Aug 27 21:34:34 2023
+| Date             : Wed Aug 30 10:59:14 2023
 | Host             : WIN-VLJ867UGB14 running 64-bit major release  (build 9200)
 | Command          : report_power -file uart_out_power_routed.rpt -pb uart_out_power_summary_routed.pb -rpx uart_out_power_routed.rpx
 | Design           : uart_out
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.073        |
+| Total On-Chip Power (W)  | 0.069        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.002        |
-| Device Static (W)        | 0.072        |
+| Dynamic (W)              | 0.001        |
+| Device Static (W)        | 0.068        |
 | Effective TJA (C/W)      | 5.0          |
-| Max Ambient (C)          | 99.6         |
-| Junction Temperature (C) | 25.4         |
+| Max Ambient (C)          | 99.7         |
+| Junction Temperature (C) | 25.3         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -53,16 +53,16 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |       70 |       --- |             --- |
+| Slice Logic    |    <0.001 |       71 |       --- |             --- |
 |   LUT as Logic |    <0.001 |       20 |     20800 |            0.10 |
 |   CARRY4       |    <0.001 |        4 |      8150 |            0.05 |
-|   Register     |    <0.001 |       31 |     41600 |            0.07 |
+|   Register     |    <0.001 |       32 |     41600 |            0.08 |
 |   F7/F8 Muxes  |    <0.001 |        2 |     32600 |           <0.01 |
 |   Others       |     0.000 |        8 |       --- |             --- |
-| Signals        |    <0.001 |       46 |       --- |             --- |
-| I/O            |    <0.001 |        5 |       106 |            4.72 |
-| Static Power   |     0.072 |          |           |                 |
-| Total          |     0.073 |          |           |                 |
+| Signals        |    <0.001 |       48 |       --- |             --- |
+| I/O            |    <0.001 |       20 |       106 |           18.87 |
+| Static Power   |     0.068 |          |           |                 |
+| Total          |     0.069 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Vccint    |       1.000 |     0.010 |       0.001 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.013 |       0.000 |      0.013 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -138,10 +138,8 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+----------+-----------+
-| Name     | Power (W) |
-+----------+-----------+
-| uart_out |     0.002 |
-+----------+-----------+
++------+-----------+
+| Name | Power (W) |
++------+-----------+
 
 

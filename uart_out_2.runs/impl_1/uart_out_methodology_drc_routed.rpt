@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date         : Sun Aug 27 21:34:34 2023
+| Date         : Wed Aug 30 10:59:13 2023
 | Host         : WIN-VLJ867UGB14 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file uart_out_methodology_drc_routed.rpt -pb uart_out_methodology_drc_routed.pb -rpx uart_out_methodology_drc_routed.rpx
 | Design       : uart_out
@@ -24,12 +24,11 @@ Table of Contents
       Design limits: <entire design considered>
              Max violations: <unlimited>
              Violations found: 15
-+-----------+------------------+-------------------------------+------------+
-| Rule      | Severity         | Description                   | Violations |
-+-----------+------------------+-------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 13         |
-| TIMING-18 | Warning          | Missing input or output delay | 2          |
-+-----------+------------------+-------------------------------+------------+
++-----------+------------------+-----------------------------+------------+
+| Rule      | Severity         | Description                 | Violations |
++-----------+------------------+-----------------------------+------------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell | 15         |
++-----------+------------------+-----------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -55,57 +54,57 @@ Related violations: <none>
 
 TIMING-17#5 Critical Warning
 Non-clocked sequential cell  
-The clock pin letter_count_reg[0]/C is not reached by a timing clock
+The clock pin led_data_reg[9]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#6 Critical Warning
 Non-clocked sequential cell  
-The clock pin letter_count_reg[1]/C is not reached by a timing clock
+The clock pin led_data_reg[9]_lopt_replica/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#7 Critical Warning
 Non-clocked sequential cell  
-The clock pin letter_count_reg[2]/C is not reached by a timing clock
+The clock pin letter_count_reg[0]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#8 Critical Warning
 Non-clocked sequential cell  
-The clock pin letter_count_reg[3]/C is not reached by a timing clock
+The clock pin letter_count_reg[1]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#9 Critical Warning
 Non-clocked sequential cell  
-The clock pin letter_count_reg[4]/C is not reached by a timing clock
+The clock pin letter_count_reg[2]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#10 Critical Warning
 Non-clocked sequential cell  
-The clock pin state_reg/C is not reached by a timing clock
+The clock pin letter_count_reg[3]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#11 Critical Warning
 Non-clocked sequential cell  
-The clock pin trans_start/dff_1/q_reg/C is not reached by a timing clock
+The clock pin letter_count_reg[4]/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#12 Critical Warning
 Non-clocked sequential cell  
-The clock pin trans_start/dff_2/q_reg/C is not reached by a timing clock
+The clock pin state_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#13 Critical Warning
 Non-clocked sequential cell  
+The clock pin trans_start/dff_1/q_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#14 Critical Warning
+Non-clocked sequential cell  
+The clock pin trans_start/dff_2/q_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#15 Critical Warning
+Non-clocked sequential cell  
 The clock pin uart_tx_reg_reg/C is not reached by a timing clock
-Related violations: <none>
-
-TIMING-18#1 Warning
-Missing input or output delay  
-An input delay is missing on uart_rx relative to the rising and/or falling clock edge(s) of sys_clk_pin.
-Related violations: <none>
-
-TIMING-18#2 Warning
-Missing input or output delay  
-An output delay is missing on data_led relative to the rising and/or falling clock edge(s) of sys_clk_pin.
 Related violations: <none>
 
 
