@@ -3,8 +3,8 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Tue Aug 22 21:12:57 2023
-# Process ID: 16424
+# Start of session at: Wed Aug 30 15:05:41 2023
+# Process ID: 16608
 # Current directory: C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/synth_1
 # Command line: vivado.exe -log uart_out.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_out.tcl
 # Log file: C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/synth_1/uart_out.vds
@@ -12,7 +12,7 @@
 # Running On: WIN-VLJ867UGB14, OS: Windows, CPU Frequency: 2096 MHz, CPU Physical cores: 12, Host memory: 16486 MB
 #-----------------------------------------------------------
 source uart_out.tcl -notrace
-create_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:08 . Memory (MB): peak = 433.715 ; gain = 163.578
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 434.922 ; gain = 164.711
 Command: read_checkpoint -auto_incremental -incremental C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/utils_1/imports/synth_1/uart_out.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/utils_1/imports/synth_1/uart_out.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,35 +25,40 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 17156
-WARNING: [Synth 8-11145] root scope declaration is not allowed in Verilog 95/2K mode [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/asci_characters.v:35]
+INFO: [Synth 8-7075] Helper process launched with PID 7412
+WARNING: [Synth 8-11145] root scope declaration is not allowed in Verilog 95/2K mode [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/asci_characters.v:36]
+INFO: [Synth 8-11241] undeclared symbol 'button_sig_debounced', assumed default net type 'wire' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:51]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:07 . Memory (MB): peak = 1251.531 ; gain = 411.961
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1250.934 ; gain = 410.844
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'uart_out' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:17]
-INFO: [Synth 8-6157] synthesizing module 'clk_gen' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:122]
-INFO: [Synth 8-6155] done synthesizing module 'clk_gen' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:122]
-INFO: [Synth 8-6157] synthesizing module 'debounce' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:148]
-INFO: [Synth 8-6157] synthesizing module 'dff' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:168]
-INFO: [Synth 8-6155] done synthesizing module 'dff' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:168]
-INFO: [Synth 8-6155] done synthesizing module 'debounce' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:148]
-INFO: [Synth 8-6155] done synthesizing module 'uart_out' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:17]
-WARNING: [Synth 8-3848] Net data_led in module/entity uart_out does not have driver. [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:22]
-WARNING: [Synth 8-7129] Port data_led in module uart_out is either unconnected or has no load
-WARNING: [Synth 8-7129] Port uart_rx in module uart_out is either unconnected or has no load
+INFO: [Synth 8-6157] synthesizing module 'uart_out' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:14]
+INFO: [Synth 8-6157] synthesizing module 'clk_gen' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:189]
+INFO: [Synth 8-6155] done synthesizing module 'clk_gen' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:189]
+INFO: [Synth 8-6157] synthesizing module 'debounce' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:212]
+INFO: [Synth 8-6157] synthesizing module 'dff' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:233]
+INFO: [Synth 8-6155] done synthesizing module 'dff' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:233]
+INFO: [Synth 8-6155] done synthesizing module 'debounce' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:212]
+INFO: [Synth 8-226] default block is never used [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:103]
+INFO: [Synth 8-6155] done synthesizing module 'uart_out' (0#1) [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:14]
+WARNING: [Synth 8-3917] design uart_out has port LED[15] driven by constant 0
+WARNING: [Synth 8-7129] Port LED[14] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[13] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[12] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[11] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[10] in module uart_out is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1340.855 ; gain = 501.285
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1342.414 ; gain = 502.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1340.855 ; gain = 501.285
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1342.414 ; gain = 502.324
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1340.855 ; gain = 501.285
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1342.414 ; gain = 502.324
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1340.855 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1342.414 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -64,32 +69,31 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/uart_out_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1381.203 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1431.969 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1381.203 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1431.969 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-3
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-327] inferring latch for variable 'transmit_reg' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:92]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -97,14 +101,20 @@ Start RTL Component Statistics
 Detailed RTL Component Info : 
 +---Adders : 
 	   2 Input   16 Bit       Adders := 1     
+	   2 Input    5 Bit       Adders := 1     
 	   2 Input    4 Bit       Adders := 2     
 +---Registers : 
 	               16 Bit    Registers := 1     
+	               10 Bit    Registers := 2     
+	                5 Bit    Registers := 1     
 	                4 Bit    Registers := 2     
-	                1 Bit    Registers := 4     
+	                1 Bit    Registers := 6     
 +---Muxes : 
+	   2 Input   10 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
 	   2 Input    4 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 3     
+	   2 Input    1 Bit        Muxes := 4     
+	   3 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -121,28 +131,32 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-WARNING: [Synth 8-7129] Port data_led in module uart_out is either unconnected or has no load
-WARNING: [Synth 8-7129] Port uart_rx in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-3917] design uart_out has port LED[15] driven by constant 0
+WARNING: [Synth 8-7129] Port LED[14] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[13] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[12] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[11] in module uart_out is either unconnected or has no load
+WARNING: [Synth 8-7129] Port LED[10] in module uart_out is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:12 ; elapsed = 00:00:22 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:16 ; elapsed = 00:00:28 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:23 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -160,46 +174,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin transmit with 1st driver pin 'transmit_reg__0/Q' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:92]
-CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin transmit with 2nd driver pin 'transmit_reg/Q' [C:/Xilinx/projects/uart_out_basys_3/uart_out_2.srcs/sources_1/new/uart_out_2.v:96]
-
-Report Check Netlist: 
-+------+------------------+-------+---------+-------+------------------+
-|      |Item              |Errors |Warnings |Status |Description       |
-+------+------------------+-------+---------+-------+------------------+
-|1     |multi_driven_nets |      0|        1|Failed |Multi driven nets |
-+------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -215,44 +220,42 @@ Report Cell Usage:
 +------+-------+------+
 |      |Cell   |Count |
 +------+-------+------+
-|1     |BUFG   |     1|
+|1     |BUFG   |     2|
 |2     |CARRY4 |     4|
-|3     |LUT1   |     3|
-|4     |LUT2   |     3|
-|5     |LUT3   |     1|
-|6     |LUT4   |     6|
+|3     |LUT1   |     5|
+|4     |LUT2   |     4|
+|5     |LUT3   |     3|
+|6     |LUT4   |     5|
 |7     |LUT5   |     3|
-|8     |LUT6   |     6|
-|9     |FDRE   |    28|
-|10    |FDSE   |     1|
-|11    |LD     |     1|
-|12    |IBUF   |     2|
-|13    |OBUF   |     1|
-|14    |OBUFT  |     1|
+|8     |LUT6   |    10|
+|9     |MUXF7  |     2|
+|10    |FDRE   |    53|
+|11    |FDSE   |     2|
+|12    |IBUF   |     3|
+|13    |OBUF   |    12|
+|14    |OBUFT  |     5|
 +------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 2 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:12 ; elapsed = 00:00:33 . Memory (MB): peak = 1381.203 ; gain = 501.285
-Synthesis Optimization Complete : Time (s): cpu = 00:00:19 ; elapsed = 00:00:35 . Memory (MB): peak = 1381.203 ; gain = 541.633
+Synthesis finished with 0 errors, 0 critical warnings and 7 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:27 . Memory (MB): peak = 1431.969 ; gain = 502.324
+Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1431.969 ; gain = 591.879
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1381.203 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 5 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1431.969 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1381.203 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1431.969 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 1 instances were transformed.
-  LD => LDCE: 1 instance 
+No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 69f9d629
+Synth Design complete | Checksum: b1fa2087
 INFO: [Common 17-83] Releasing license: Synthesis
-29 Infos, 8 Warnings, 2 Critical Warnings and 0 Errors encountered.
+31 Infos, 14 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:42 . Memory (MB): peak = 1381.203 ; gain = 923.641
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+synth_design: Time (s): cpu = 00:00:32 ; elapsed = 00:00:34 . Memory (MB): peak = 1431.969 ; gain = 972.207
 INFO: [Common 17-1381] The checkpoint 'C:/Xilinx/projects/uart_out_basys_3/uart_out_2.runs/synth_1/uart_out.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file uart_out_utilization_synth.rpt -pb uart_out_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Aug 22 21:13:50 2023...
+INFO: [Common 17-206] Exiting Vivado at Wed Aug 30 15:06:22 2023...

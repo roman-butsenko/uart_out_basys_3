@@ -32,4 +32,5 @@ exclam_let = 8'h21,
 new_line_let = 8'h0a,
 return_let = 8'h0d,
 comma_let = 8'h2c,
+enq_let = 8'h05, 
 space_let = 8'h20;

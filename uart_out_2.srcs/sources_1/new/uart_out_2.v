@@ -1,46 +1,63 @@
 `timescale 1ns / 10ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: hanging out co.
+// Company: 
 // Engineer: Roman Butsenko
 // 
-// Create Date: 10.08.2023 20:51:59
+// Create Date: 27.08.2023 20:51:59
 // Design Name: 
 // Module Name: uart_out
-// Project Name: UART out
-// Target Devices: Basys 3
-// Tool Versions: 
-// Description: communicating between terra term console and FPGA
- 
+// Project Name: uart_out
+// 
 //////////////////////////////////////////////////////////////////////////////////
 
 
 module uart_out(
     input CLK100MHZ,
-    input button,
     output uart_tx,
     input uart_rx,
-    output data_led
+    input button,
+    output [15:0] LED
     );
     
     
     reg uart_tx_reg;
     assign uart_tx = uart_tx_reg;
     
-    wire clk; //
+    wire clk;
     
-    //clk generator
     clk_gen clk_gen_instance(
         .CLK100MHZ(CLK100MHZ),
         .clk(clk)
         );
-            
-    reg [3:0] bit_count = 0; //this register counts the bits in a transmitted byte
+        
+    reg [3:0] bit_count = 0;
     
     `include "C:\Xilinx\projects\uart_out_basys_3\uart_out_2.srcs\sources_1\new\asci_characters.v"
     
     parameter 
+    // bits for UART
     start_bit = 1'b0,
-    stop_bit = 1'b1;
+    stop_bit = 1'b1,
+    //variables for state machine
+    TRANSMIT = 1'b1,
+    IDLE = 1'b0;
+    
+    reg state = 0;
+    reg next_state = 0;
+    
+    debounce trans_start(
+        .sig(button),
+        .clk(clk),
+        .sig_debounced(button_sig_debounced));
+        
+     reg button_debounced = 0;                              // had to create this because
+     always@(*)                                             // x state of button_debounce 
+     button_debounced <= (button_sig_debounced) ? 1:0;      // in the beginning was screwing me over
+        
+    // This is very important, in UART least significant bit
+    // goes first (right after the start bit), so in order for
+    // it to line up with the ASCII simbol instantiation, this
+    // register is created a bit wierd
     
     reg [9:0] byte = 0;
     
@@ -49,73 +66,122 @@ module uart_out(
     
     // We're gonna write "Hello, world![new_line]", 14 characters in total
     
-    reg [3:0] letter_count = 0; // this register has to store at least 14 states
-                                // is stores the number of the current letter in the transmission
-    
-    // This is very important, in UART least significant bit
-    // goes first (right after the start bit), so in order for
-    // it to line up with the ASCII simbol instantiation, this
-    // register is created a bit wierd
+    reg [4:0] letter_count = 0; // this register has to store at least 14 states
     
     always@(*) begin
         case(letter_count)
-            4'd0: byte = {stop_bit, H_let, start_bit};
-            4'd1: byte = {stop_bit, e_let, start_bit};
-            4'd2: byte = {stop_bit, l_let, start_bit};
-            4'd3: byte = {stop_bit, l_let, start_bit};
-            4'd4: byte = {stop_bit, o_let, start_bit};
-            4'd5: byte = {stop_bit, comma_let, start_bit};
-            4'd6: byte = {stop_bit, space_let, start_bit};
-            4'd7: byte = {stop_bit, w_let, start_bit};
-            4'd8: byte = {stop_bit, o_let, start_bit};
-            4'd9: byte = {stop_bit, r_let, start_bit};
-            4'd10: byte = {stop_bit, l_let, start_bit};
-            4'd11: byte = {stop_bit, d_let, start_bit};
-            4'd12: byte = {stop_bit, exclam_let, start_bit};
-            4'd13: byte = {stop_bit, new_line_let, start_bit};
-            4'd14: byte = {stop_bit, return_let, start_bit};
-            default:  byte = {stop_bit, x_let, start_bit};
+            5'd0: byte = {stop_bit, H_let, start_bit};
+            5'd1: byte = {stop_bit, e_let, start_bit};
+            5'd2: byte = {stop_bit, l_let, start_bit};
+            5'd3: byte = {stop_bit, l_let, start_bit};
+            5'd4: byte = {stop_bit, o_let, start_bit};
+            5'd5: byte = {stop_bit, comma_let, start_bit};
+            5'd6: byte = {stop_bit, space_let, start_bit};
+            5'd7: byte = {stop_bit, w_let, start_bit};
+            5'd8: byte = {stop_bit, o_let, start_bit};
+            5'd9: byte = {stop_bit, r_let, start_bit};
+            5'd10: byte = {stop_bit, l_let, start_bit};
+            5'd11: byte = {stop_bit, d_let, start_bit};
+            5'd12: byte = {stop_bit, exclam_let, start_bit};
+            5'd13: byte = {stop_bit, new_line_let, start_bit};
+            5'd14: byte = {stop_bit, return_let, start_bit};
+            5'd15: byte = {stop_bit, enq_let, start_bit};
+            // enq stands for enquiry and is a symnol that tera term
+            // is looking for, after recieving it, it creates an
+            //answerback that can be read to implement 
+            //fullduplex UART
+            
+            default:  byte = {stop_bit, exclam_let, start_bit};
         endcase
-    end
+    end 
     
-    // logic, that describes the signal to start the transmission
-    reg transmit = 0;
-    wire button_deb;
+    //____state machine
+    always@(posedge clk) state <= next_state; 
     
-    debounce button_debiunce(
-        .sig(button),
-        .clk(clk),
-        .sig_debounced(button_deb)
-        );
-        
-    always@(*) begin 
-    if (button_deb) transmit <= 1;
-    if (letter_count == 4'd14) transmit <= 0;
-    
-    //TX line control
-    always @ (posedge clk) begin
-        if (!transmit) begin
-            uart_tx_reg <= 1;
-            bit_count = 0;
-        end
-        else if (transmit) begin
-            uart_tx_reg <= byte[bit_count];
-            if (bit_count == 9) begin
-                bit_count <= 0;
-                
-                if (letter_count == 4'd14) begin
-                    letter_count = 4'd0;            // transmission is finished until
-                                     // the button is pressed again (see button_debounce)
-                end
-                else letter_count = letter_count + 1; // switching to the next symbol
+    //state transition
+    always@(*)
+        case(state)
+            TRANSMIT: begin
+                next_state <= (letter_count == 5'd16) ? IDLE : TRANSMIT;
             end
-            else bit_count <= bit_count + 1;          
-        end
-    end
+            IDLE: begin
+               next_state <= (button_debounced) ? TRANSMIT : IDLE;
+            end
+            default: uart_tx_reg = 1;
+        endcase
+ 
+    //state outputs
+    always@(posedge clk)
+        case(next_state)
+            TRANSMIT: begin
+                uart_tx_reg = byte[bit_count];
+                if (bit_count == 9) begin
+                        bit_count = 0;
+                        letter_count = letter_count + 1;
+                    end
+                else bit_count = bit_count + 1;
+            end
+            IDLE: begin
+                uart_tx_reg <= 1;
+                bit_count <= 0;
+                letter_count <= 0;
+            end
+        endcase
+    //____state machine end      
     
     
+    // UART recieve
     
+    reg data_led_reg = 0;
+    assign LED [15] = data_led_reg;
+    // I checjed with led, I can notice the blink
+    // if it recieves the same data as it transmits 
     
+    //output will be monitored through LEDs
+    reg [9:0] led_data;
+    assign LED [9:0] = led_data [9:0]; 
+
+    parameter
+    RECEIVE = 1,
+    IDLE_RX = 0;
+    
+    reg state_rx = IDLE_RX;
+    reg next_state_rx = IDLE_RX;
+    
+    reg [3:0] receive_count = 0;
+    reg [9:0] receive_data = 0;
+    
+    //idea for debugging: counting the amount of negative and positive impulses on rx
+    
+    //____state machine
+    always@(posedge clk) state_rx <= next_state_rx; 
+    
+    //state transition
+    always@(*)
+        case(state_rx)
+            RECEIVE: begin
+               next_state_rx <= (receive_count == 4'd9) ? IDLE_RX : RECEIVE;
+            end
+            IDLE_RX: begin
+               next_state_rx <= (uart_rx == 0) ? RECEIVE : IDLE_RX;
+            end            
+        endcase
+        
+    //state outputs
+    always@(posedge clk)
+        case(next_state_rx)
+            RECEIVE: begin
+                led_data [9:0] <= 10'b1000000001; // this is just to have visual indication of the stat
+                receive_data[9:0] <= {uart_rx, receive_data[9:1]};
+                receive_count = receive_count + 1;
+                
+            end
+            IDLE_RX: begin
+                receive_count <= 0;
+                led_data [9:0] <= receive_data[9:0];
+             
+            end
+        endcase      
 endmodule
 
 
@@ -142,36 +208,28 @@ module clk_gen(
     
 endmodule
 
-//Debouncing module
-// if input is high, output will go high for 1 clk period
-// without that module transmission is
-// interrupted if the butten is let go off
+// debouncing circuit
 module debounce(
     input sig,
     input clk,
-    output sig_debounced
-    );
+    output sig_debounced);
     
-    wire dff_1_out;
-    wire dff_2_out;
-    wire inv_dff_2_out;
+    wire d1_out;
+    wire d2_out;
+    wire n_d2_out;
     
-    dff dff_deb_1 (.clk(clk), .d(sig), .q(dff_1_out));
-    dff dff_deb_2 (.clk(clk), .d(dff_1_out), .q(dff_2_out));
     
-    assign inv_dff_2_out = ~dff_2_out;
+    //wouldn't hurt adding another clk
+    // divider here
+    dff dff_1(sig, clk, d1_out);
+    dff dff_2(d1_out, clk, d2_out);
     
-    assign sig_debounced = inv_dff_2_out & dff_1_out;
+    assign n_d2_out = ~d2_out;
     
+    assign sig_debounced = d1_out & n_d2_out;  
 endmodule
 
-// just a simple D-flipflop
-module dff(
-    input clk,
-    input d,
-    output reg q
-    );
-    
-    always@ (posedge clk) q<=d;
-    
-endmodule
+//Just a d-flop flop
+module dff (input d, input clk, output reg q);
+    always@(posedge clk) q<=d;
+endmodule 
