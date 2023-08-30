@@ -8,9 +8,14 @@ Even though all the project files have "UART out" in their names, I decided to e
 
 ## Clock Generation
 
-The heart of the system is the `clk_gen` module. This module generates the clock signal required for both the transmitter and receiver to operate at a baud rate of 9600. For detailed information about this setup, you can refer to [this helpful resource](https://www.instructables.com/UART-Communication-on-Basys-3-FPGA-Dev-Board-Power/).
+The heart of the system is the `clk_gen` module. This module generates the clock signal required for both the transmitter and receiver to operate at a baud rate of 9600. If you are interested in this project, it might be worth your time, checking out [this helpful resource](https://www.instructables.com/UART-Communication-on-Basys-3-FPGA-Dev-Board-Power/).
 
-> **Note:** A baud rate of 9600 requires a clock signal period of 0.00010416 seconds, while our 100MHz signal has a period of 0.00000001 seconds. To synchronize these, careful state changes in the clock counter are crucial.
+> **Note:** A baud rate of 9600 requires a clock signal period of 0.00010416 seconds, while our 100MHz signal, the one that is avaliable on Basus 3, has a period of 0.00000001 seconds. The author chose an inappropriate counter setup, counting to 10416. It is not suitable for that baidrate, since having a period of 0.00010416 seconds requires a change of state of clock signal once in 0.00005208 seconds or when the counter goes from 0 to 5207. Which is confirmed by the [source, which author referes to in step 7](https://itstillworks.com/12250910/how-to-create-a-simple-serial-uart-transmitter-in-verilog-hdl).
+
+## Visualizing UART Output
+
+To view UART output, the TeraTerm application is utilized. It supports various baud rates, even beyond the "standard" list. Additionally, an interesting feature is the answerback mechanism: when an inquiry symbol (UTF-8: 05, in hexadecimal) is transmitted, it sends user-defined symbols back to the transmitter, which aids in receiver testing.
+
 
 ## Visualizing UART Output
 
