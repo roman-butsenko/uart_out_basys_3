@@ -1,4 +1,4 @@
-Running: xsim.dir/uart_out_simulation_behav/xsimk.exe -simmode gui -wdb uart_out_simulation_behav.wdb -simrunnum 0 -socket 47840
+Running: xsim.dir/uart_out_simulation_behav/xsimk.exe -simmode gui -wdb uart_out_simulation_behav.wdb -simrunnum 0 -socket 32824
 Design successfully loaded
-Design Loading Memory Usage: 7808 KB (Peak: 7808 KB)
-Design Loading CPU Usage: 15 ms
+Design Loading Memory Usage: 7868 KB (Peak: 7868 KB)
+Design Loading CPU Usage: 0 ms
